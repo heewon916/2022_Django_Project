@@ -1,9 +1,26 @@
+
 {% for company in company_list %}   <!--company_list를 반복하여 순차적으로 company에 대입-->
-    <ul>
-        {{ company.code }}          <!--company 모델의 종목코드 정보 가져오기-->
-        {{ company.company }}       <!--company 모델의 기업명 가져오기-->
-    </ul>
+<ul>
+    {{ company.code }}          <!--company 모델의 종목코드 정보 가져오기-->
+    {{ company.company }}       <!--company 모델의 기업명 가져오기-->
+</ul>
 {% endfor %}
 
-{{ company_list.0.code }} {{ company_list.0.company }}  <!--company_list의 첫번째 종목코드와 기업명 가져오기-->
-{{ company_list.1.code }} {{ company_list.1.company }}  <!--두번째 종목코드와 기업명 가져오기-->
+<!--{{ company_list.0.code }} {{ company_list.0.company }}  <!--company_list의 첫번째 종목코드와 기업명 가져오기-->
+<!--{{ company_list.1.code }} {{ company_list.1.company }}  <!--두번째 종목코드와 기업명 가져오기-->
+
+
+<!--
+<div class="p-4 mb-3 bg-light rounded">
+    <h4 class="font-bold"><b>주요 거래 top5</b></h4>
+
+    {%for index in comps %}
+    <td>    
+      <p style="font-size:15px;"><b>{{index.comp}}</b></p>
+    </td>
+    {%endfor%}
+    
+ </div>
+-->
+
+ 
