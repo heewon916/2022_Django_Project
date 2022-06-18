@@ -14,12 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 ##--edit
 from stock import views 
 urlpatterns = [
     path('admin/', admin.site.urls),
     ##--edit
-    ##--path에서 'stock'이라는 이름으로 url을 사용할 것이고, 이는 views.py 내부의 index 함수에서 값을 받아온다는 의미이다.
-    path('stock/', views.index),
+    ##--stock/으로 시작되는 페이지의 요청은 전부 stock/urls.py에 있는 url정보를 참고한다는 의미이다
+    path('stock/', include('stock.urls')),
 ]
