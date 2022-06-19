@@ -38,8 +38,8 @@
     <thead>
       <tr class="col_name">
         <th>순위</th>
-        <th>현재가</th>
         <th>종목명</th>
+        <th>현재가</th>
         <th>업데이트 날짜</th>
       </tr>
     </thead>
@@ -47,13 +47,19 @@
   {% for company in company_list %}   <!--company_list를 반복하여 순차적으로 company에 대입-->
     <tr class="one_company">
       <td class="rank">{{ company.rank }}</td>
-      <td class="code">{{ company.code }}</td>
       <td class="company">{{ company.company }}</td>
+      <td class="code">{{ company.code }}</td>
       <td class="last_update">{{ company.last_update }}</td>
     </tr>
   {% endfor %}
     </tbody>
   </table>
+  <div class="site">
+    <a href="https://finance.naver.com/">주식 사이트</a>
+  </div>
+  <div class="madeby">
+    <a href="https://github.com/heewon916/2022_Django_Project">Heewon Kim</a>
+  </div>
   {% endblock%}
    
   <!--{{ company_list.0.code }} {{ company_list.0.company }}  <!--company_list의 첫번째 종목코드와 기업명 가져오기-->
