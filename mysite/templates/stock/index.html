@@ -27,23 +27,33 @@
   </script>
   -->
   {% block content %}
-  <h1>NAVER 인기검색종목 1~5위</h1>
-  <!--
-  <div id="today_date">
-    {{company_list.0.last_update}}
+  <h1>NAVER <br> 주식 인기검색종목 1~5위</h1>
+
+  <div class="today_date">
+    {{company_list.0.last_update_time}}
   </div>
-  -->
+
   <hr>
-  {% for company in company_list %}   <!--company_list를 반복하여 순차적으로 company에 대입-->
   <table class="company_list">
+    <thead>
+      <tr class="col_name">
+        <th>순위</th>
+        <th>현재가</th>
+        <th>종목명</th>
+        <th>업데이트 날짜</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for company in company_list %}   <!--company_list를 반복하여 순차적으로 company에 대입-->
     <tr class="one_company">
-      <td id="code">{{ company.code }}</td>
-      <td id="company">{{ company.company }}</td>
-      <td id="last_update">{{ company.last_update }}</td>
+      <td class="rank">{{ company.rank }}</td>
+      <td class="code">{{ company.code }}</td>
+      <td class="company">{{ company.company }}</td>
+      <td class="last_update">{{ company.last_update }}</td>
     </tr>
-  </table>
   {% endfor %}
- 
+    </tbody>
+  </table>
   {% endblock%}
    
   <!--{{ company_list.0.code }} {{ company_list.0.company }}  <!--company_list의 첫번째 종목코드와 기업명 가져오기-->

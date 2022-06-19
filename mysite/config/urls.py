@@ -26,4 +26,4 @@ urlpatterns = [
     ##--stock/으로 시작되는 페이지의 요청은 전부 stock/urls.py에 있는 url정보를 참고한다는 의미이다
     path('stock/', include('stock.urls')),
 ]
-urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+#urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

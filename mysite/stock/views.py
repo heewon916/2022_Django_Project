@@ -1,4 +1,5 @@
 import code
+import datetime
 from urllib import response
 from django.shortcuts import render
 ##--edit
@@ -8,7 +9,8 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import MySQLdb
-from datetime import date
+from datetime import date, datetime
+import sqlite3
 # Create your views here.
 
 def getRank1to5():
@@ -18,17 +20,49 @@ def getRank1to5():
     html = req.text
     parse = BeautifulSoup(html, 'html.parser')
 
+    ranks = []
     codes = []
     companys = []
+    rates = []
     for i in range(1,6):
+        rank = parse.select_one(f'#container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr:nth-child({i}) > th > em')
+        rank = ''.join(rank.getText().split('.')[0])
+        #print(tyrank))
         code = parse.select_one(f'#container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr:nth-child({i}) > td:nth-child(2)')
-        code = ''.join(code.getText().split(','))
+        code = ''.join(code.get_text().split(','))
         company  = parse.select_one(f'#container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr:nth-child({i}) > th > a')
-        company = company.getText()
+        #print(company)
+        company = ''.join(company.get_text().split(' '))
+        ranks.append(rank)
         codes.append(code)
         companys.append(company)
-    datefield = date.today()
+        #print(code, company)
+        
+        #rates = parse.select_one(f'#container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr:nth-child({i}) > td:nth-child(3) > span')
+        #container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr.up > td:nth-child(3) > span
+        #container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr:nth-child(1) > td:nth-child(3) > span
+        #container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr:nth-child(3) > td:nth-child(3) > span
+        #container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr.up > td:nth-child(3) > span
 
+        #container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr.up > td:nth-child(3) > em
+        #container > div.aside > div > div.aside_area.aside_popular > table > tbody > tr:nth-child(1) > td:nth-child(3) > em
+
+    #datefield = date.today()
+    
+    q = Company.objects.all()
+    q.delete()
+    
+    for i in range(5):
+        q = Company(rank=ranks[i], code=codes[i], company=companys[i], last_update=date.today(), last_update_time=datetime.now().strftime("%H:%M:%S"))
+        q.save()
+    #conn = sqlite3.connect("test.db", isolation_level=None)
+    #cursor = conn.cursor()
+    #cursor.execute("create table if not exists table1 ()")
+    #for i in range(5):
+    #    print(codes[i], companys[i])
+    #    cursor.execute(f"INSERT INTO Com VALUES({codes[i]},\"{companys[i]}\",\"{datefield}\")")
+        
+'''
     conn = MySQLdb.connect(
         user="root",
         passwd="hkim916!@",
@@ -55,7 +89,7 @@ def getRank1to5():
     conn.commit()
     # 연결종료하기
     conn.close()
-    
+''' 
 def index(request):
     #edit
     getRank1to5()
