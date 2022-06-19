@@ -49,6 +49,7 @@ def getRank1to5():
     cursor = conn.cursor()
     # 데이터 저장하기
     for i in range(5):
+        print(codes[i], companys[i])
         cursor.execute(f"INSERT INTO stock_company VALUES({codes[i]},\"{companys[i]}\",\"{datefield}\")")
     # 커밋하기
     conn.commit()

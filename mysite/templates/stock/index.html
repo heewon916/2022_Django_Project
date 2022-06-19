@@ -1,32 +1,55 @@
 <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
--->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
 {% load static %}
-<link rel ="stylesheet" href = "{% static 'stock.css'%}">
-<h1>NAVER 인기검색종목 1~5위</h1>
+<!doctype html>
+<html lang='ko'>
+<head>
+  <title>NAVER 주식 인기검색종목</title>
+  <link rel ="stylesheet" href = "{% static 'stock.css'%}">
 
-{% for company in company_list %}   <!--company_list를 반복하여 순차적으로 company에 대입-->
-<ul>
-    {{ company.code }}          <!--company 모델의 종목코드 정보 가져오기-->
-    {{ company.company }}       <!--company 모델의 기업명 가져오기-->
-</ul>
-{% endfor %}
-
-<!--{{ company_list.0.code }} {{ company_list.0.company }}  <!--company_list의 첫번째 종목코드와 기업명 가져오기-->
-<!--{{ company_list.1.code }} {{ company_list.1.company }}  <!--두번째 종목코드와 기업명 가져오기-->
-
-
-<!--
-<div class="p-4 mb-3 bg-light rounded">
-    <h4 class="font-bold"><b>주요 거래 top5</b></h4>
-
-    {%for index in comps %}
-    <td>    
-      <p style="font-size:15px;"><b>{{index.comp}}</b></p>
-    </td>
-    {%endfor%}
-    
- </div>
--->
+</head>
+<body>
+  <!--
+  <script type="text/javascript">
+    var target = document.getElementById("today_date");
+    function clock(){
+      var time = new Date();
+      var hour = time.getHours();
+      var min = time.getMinutes();
+      var sec = time.getSeconds();
+      var innerText = "현재시각 "+ hour + ":" + min + ":" + sec;
+      console.log(innerText);
+      var Text = "{{"+innerText+"}}";
+      target.innerText = Text;
+    }
+    clock();
+    setInterval(clock, 1000);
+  </script>
+  -->
+  {% block content %}
+  <h1>NAVER 인기검색종목 1~5위</h1>
+  <!--
+  <div id="today_date">
+    {{company_list.0.last_update}}
+  </div>
+  -->
+  <hr>
+  {% for company in company_list %}   <!--company_list를 반복하여 순차적으로 company에 대입-->
+  <table class="company_list">
+    <tr class="one_company">
+      <td id="code">{{ company.code }}</td>
+      <td id="company">{{ company.company }}</td>
+      <td id="last_update">{{ company.last_update }}</td>
+    </tr>
+  </table>
+  {% endfor %}
+ 
+  {% endblock%}
+   
+  <!--{{ company_list.0.code }} {{ company_list.0.company }}  <!--company_list의 첫번째 종목코드와 기업명 가져오기-->
+  <!--{{ company_list.1.code }} {{ company_list.1.company }}  <!--두번째 종목코드와 기업명 가져오기-->
+  
+</body>
+</html>
 
  
