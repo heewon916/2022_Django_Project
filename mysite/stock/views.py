@@ -11,7 +11,7 @@ import MySQLdb
 from datetime import date
 # Create your views here.
 
-def getRank():
+def getRank1to5():
     header = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
     req = requests.get('https://finance.naver.com/', headers=header)  
@@ -57,7 +57,7 @@ def getRank():
     
 def index(request):
     #edit
-    getRank()
+    getRank1to5()
     company_list = Company.objects.all() #Company 모델에 있는 정보를 전부 가져와서
     context = {'company_list': company_list} #company_list의 정보를 context에 담는다. 
     return render(request, 'stock/index.html', context)

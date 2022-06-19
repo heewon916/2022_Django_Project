@@ -1,6 +1,10 @@
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<h1>네이버 주식 1~5위</h1>
+-->
+{% load static %}
+<link rel ="stylesheet" href = "{% static 'stock.css'%}">
+<h1>NAVER 인기검색종목 1~5위</h1>
+
 {% for company in company_list %}   <!--company_list를 반복하여 순차적으로 company에 대입-->
 <ul>
     {{ company.code }}          <!--company 모델의 종목코드 정보 가져오기-->

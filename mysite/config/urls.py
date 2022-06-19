@@ -13,13 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import path, include
 ##--edit
 from stock import views 
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     ##--edit
     ##--stock/으로 시작되는 페이지의 요청은 전부 stock/urls.py에 있는 url정보를 참고한다는 의미이다
     path('stock/', include('stock.urls')),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
