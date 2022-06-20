@@ -4,7 +4,9 @@
 <!doctype html>
 <html lang='ko'>
 <head>
-  <title>NAVER 주식 인기검색종목</title>
+  <title>
+      NAVER 주식 인기검색종목
+  </title>
   <link rel ="stylesheet" href = "{% static 'stock.css'%}">
 
 </head>
@@ -27,12 +29,11 @@
   </script>
   -->
   {% block content %}
-  <h1>NAVER <br> 주식 인기검색종목 1~5위</h1>
+  <h1><br>NAVER<br> 주식 인기검색종목 1~5위</h1>
 
   <div class="today_date">
     {{company_list.0.last_update_time}}
   </div>
-
   <hr>
   <table class="company_list">
     <thead>
