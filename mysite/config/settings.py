@@ -87,7 +87,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3') ##--edit: static 파일 수집 허용
         #'ENGINE': 'django.db.backends.mysql',
         #'NAME': 'stock_test',
         #'USER': 'root',
@@ -134,9 +135,9 @@ USE_TZ = True
 
 ##--edit 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'stock', 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'stock', 'static'),
+# ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ##--fin.
 # Default primary key field type
